@@ -19,7 +19,7 @@ def load_data(data_type='train', without_NAs=True):
     sequential_driver = {} 
     sequential_behavior = {}
 
-    for item in sequential_data:   
+    for item in sequential_data:
         # get each user_id for each order
         user_id = item[0]
         # get each order time
@@ -134,31 +134,4 @@ if __name__ == '__main__':
     
     print(max_sentence_len)
     print(sum(sentence_len_list)/len(sentence_len_list))
-    
-
-        
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-    
-
-
-    
-    
-
-
-
-    
-
-
         

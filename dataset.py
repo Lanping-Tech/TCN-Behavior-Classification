@@ -10,6 +10,18 @@ class BehaviorDataset(Dataset):
         self.vocab_dict = self.build_vocab(vocab_path)
         self.pad_size = pad_size
         self.contents = self.build_dataset(data_path)
+        data_dict = {}
+        for (words, label) in self.contents:
+            if label not in data_dict:
+                data_dict[label] = []
+            data_dict[label].append(words)
+        min_class = min(len(data_dict[0]), len(data_dict[1]))
+        self.contents = []
+        print('min_class:', min_class)
+        for label in [0, 1]:
+            for i in range(min_class):
+                self.contents.append((data_dict[label][i], label))
+        
 
     def __len__(self):
         return len(self.contents)
@@ -50,4 +62,6 @@ class BehaviorDataset(Dataset):
         
         return contents
         
-
+if __name__ == '__main__':
+    dataset = BehaviorDataset('data/train.txt', 'data/vocab.txt')
+    print(dataset.__len__())
